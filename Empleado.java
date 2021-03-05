@@ -1,34 +1,41 @@
-import java.util.ArrayList;
-public class Empleado {
-    String nombre;
-    int salarioDiario, diasTrabajos;
-    public Empleado(){
 
+public class Empleado extends Persona{
+    private int salarioDiario, diasTrabajos;
+    //setters
+
+    public void setDiasTrabajos(int diasTrabajos) {
+        this.diasTrabajos = diasTrabajos;
     }
-    public  Empleado(String nombre,int salarioDiario, int diasTrabajos){
-        this.nombre=nombre;
+
+    public void setSalarioDiario(int salarioDiario) {
+        this.salarioDiario = salarioDiario;
+    }
+    //getters
+
+    public int getDiasTrabajos() {
+        return diasTrabajos;
+    }
+
+    public int getSalarioDiario() {
+        return salarioDiario;
+    }
+    //constructores
+    public Empleado(String nombre,String apellido,int edad,char sexo, int salarioDiario, int diasTrabajos){
+        super(nombre,apellido,edad,sexo);
+        this.salarioDiario = salarioDiario;
+        this.diasTrabajos = diasTrabajos;
+    }
+    public  Empleado(int salarioDiario, int diasTrabajos){
         this.salarioDiario=salarioDiario;
         this.diasTrabajos=diasTrabajos;
     }
-    public static void main(String [] arg){
-        ArrayList<Empleado> listaEmpleado = new ArrayList<Empleado>();
-        Empleado obj1 = new Empleado("Paulo",100,6);
-        Empleado obj2 = new Empleado("Regina",300,2);
-        Empleado obj3 = new Empleado("Maria",200,4);
-        listaEmpleado.add(obj1);
-        listaEmpleado.add(obj2);
-        listaEmpleado.add(obj3);
-        for (Empleado objEmpleado: listaEmpleado){
-            System.out.println(objEmpleado.nombre);
-            System.out.println(objEmpleado.salarioDiario);
-            System.out.println(objEmpleado.diasTrabajos);
-            System.out.println(objEmpleado.salarioTotal(objEmpleado.salarioDiario,objEmpleado.diasTrabajos));
-        }
-
+    //metodos
+    public int salarioTotal(){
+        return getDiasTrabajos()*getSalarioDiario();
     }
-    public int salarioTotal(int salarioDiarioA,int diasTrabajosA){
-        if (diasTrabajosA>5){
-            return salarioDiarioA*diasTrabajosA*2;
-        }else return salarioDiarioA*diasTrabajosA;
+    public static void main(String [] arg){
+        Empleado objEmp = new Empleado("Paulo","Hernandez",18,'M',1200,5);
+        objEmp.ImprimirDatos();
+        System.out.println("Salario Total = "+objEmp.salarioTotal());
     }
 }
